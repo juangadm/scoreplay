@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScorePlay - sales demo</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* --- Home-specific styles --- */
+    .home-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .home-header h1 {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .home-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .qr-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      transition: color 0.15s;
+    }
+
+    .qr-link:hover { color: var(--text-primary); }
+
+    .qr-link svg { width: 16px; height: 16px; }
+
+    /* Search section */
+    .home-search-section {
+      margin-bottom: 32px;
+    }
+
+    /* Collections section */
+    .collections-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .collections-section-header a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.15s;
+    }
+
+    .collections-section-header a:hover h2 {
+      color: var(--accent-pink);
+    }
+
+    .collections-section-header svg {
+      width: 18px;
+      height: 18px;
+      color: var(--text-secondary);
+    }
+
+    .collections-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .collections-scroll::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .collections-scroll .collection-card {
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-topbar">
+      <div class="sidebar-logo">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="rgb(243, 127, 185)">
+          <circle cx="12" cy="12" r="10"/>
+        </svg>
+        <span>sales demo</span>
+      </div>
+      <div class="sidebar-actions">
+        <a href="/operations" class="sidebar-action-btn" title="Notifications">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2m6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5z"/>
+          </svg>
+        </a>
+        <button class="sidebar-action-btn" title="Cart">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M15.55 13c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.37-.66-.11-1.48-.87-1.48H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2zM6.16 6h12.15l-2.76 5H8.53zM7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2m10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2"/>
+          </svg>
+        </button>
+        <button class="sidebar-action-btn" title="Profile" style="gap:4px;padding:0 4px;width:auto;">
+          <div class="sidebar-avatar">JG</div>
+          <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+            <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="/home" class="nav-link active">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="/upload" class="nav-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96M19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11C20.78 12.14 22 13.45 22 15c0 1.65-1.35 3-3 3"/></svg>
+            Upload
+          </a>
+        </li>
+        <li>
+          <a href="/media" class="nav-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 6H0v5h.01L0 20c0 1.1.9 2 2 2h18v-2H2V6zm5 9h14l-3.5-4.5-2.5 3.01L11.5 9zM22 4h-8l-2-2H6c-1.1 0-1.99.9-1.99 2L4 16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 12H6V4h5.17l1.41 1.41.59.59H22v10z"/></svg>
+            Media library
+          </a>
+        </li>
+        <li>
+          <a href="/collections" class="nav-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2m-3 2v5l-1-.75L15 9V4zm3 12H8V4h5v9l3-2.25L19 13V4h1z"/></svg>
+            Collections
+          </a>
+        </li>
+        <li>
+          <a href="/live" class="nav-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 10v8l7-4zm12-4h-7.58l3.29-3.29L16 2l-4 4h-.03l-4-4-.69.71L10.56 6H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2m0 14H3V8h18z"/></svg>
+            Live
+          </a>
+        </li>
+        <li style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px;">
+          <button class="sidebar-section-btn">
+            Library
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg>
+          </button>
+        </li>
+        <li>
+          <button class="sidebar-section-btn">
+            Distribution
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg>
+          </button>
+        </li>
+        <li>
+          <button class="sidebar-section-btn">
+            Configure
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg>
+          </button>
+        </li>
+        <li>
+          <button class="sidebar-section-btn">
+            Analytics
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"/></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- Header -->
+    <div class="home-header">
+      <h1>Welcome Juan</h1>
+      <div class="home-header-actions">
+        <a href="/mobile?my_qr_code=true" class="qr-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 11h8V3H3zm2-6h4v4H5zM3 21h8v-8H3zm2-6h4v4H5zm8-12v8h8V3zm6 6h-4V5h4zm-5.99 4h2v2h-2zm2 2h2v2h-2zm-2 2h2v2h-2zm4 0h2v2h-2zm2 2h2v2h-2zm-4 0h2v2h-2zm2-6h2v2h-2z"/></svg>
+          Get QR code
+        </a>
+        <a href="/upload">
+          <button class="btn-primary">Upload</button>
+        </a>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="home-search-section">
+      <div class="search-bar">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"/>
+        </svg>
+        <input type="text" placeholder="Search by keyword, tag, player, team, season etc." />
+      </div>
+    </div>
+
+    <!-- Latest Collections -->
+    <div class="collections-section-header">
+      <a href="/collections">
+        <h2>Latest collections</h2>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+      </a>
+    </div>
+
+    <div class="collections-scroll">
+
+      <!-- Card 1: Testing -->
+      <a href="/collections/815189" class="collection-card"
+         style="background-image: url('https://scoreplay-mam-media-transformed.s3.amazonaws.com/986/3942801/media_90369703_89974573_compressed.png?x=44c1a5c16747a8');">
+        <div class="card-actions">
+          <button class="card-action-btn" title="Share" onclick="event.preventDefault()">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5"/></svg>
+          </button>
+          <button class="card-action-btn" title="Edit" onclick="event.preventDefault()">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m14.06 9.02.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/></svg>
+          </button>
+        </div>
+        <div></div>
+        <div class="card-bottom">
+          <div class="card-date">10/03/2026</div>
+          <h6 class="card-title">Testing</h6>
+        </div>
+      </a>
+
+      <!-- Card 2: Demo -->
+      <a href="/collections/808850" class="collection-card" style="background-color: rgb(40, 45, 60);">
+        <div class="card-actions">
+          <button class="card-action-btn" title="Share" onclick="event.preventDefault()">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5"/></svg>
+          </button>
+          <button class="card-action-btn" title="Edit" onclick="event.preventDefault()">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m14.06 9.02.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/></svg>
+          </button>
+        </div>
+        <div></div>
+        <div class="card-bottom">
+          <div class="card-date">06/03/2026</div>
+          <h6 class="card-title">Demo</h6>
+          <p class="card-subtitle">Oakland Roots SC (OAK)</p>
+        </div>
+      </a>
+
+      <!-- Card 3: Test (1 media) -->
+      <a href="/collections/409546" class="collection-card" style="background-color: rgb(40, 45, 60);">
+        <div class="card-actions">
+          <button class="card-action-btn" title="Share" onclick="event.preventDefault()">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5"/></svg>
+          </button>
+          <button class="card-action-btn" title="Edit" onclick="event.preventDefault()">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m14.06 9.02.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/></svg>
+          </button>
+        </div>
+        <div class="card-top-row">
+          <span class="card-media-count">1</span>
+        </div>
+        <div class="card-bottom">
+          <div class="card-date">21/07/2025</div>
+          <h6 class="card-title">Test</h6>
+          <p class="card-subtitle">Oakland Roots SC (OAK)</p>
+        </div>
+      </a>
+
+      <!-- Card 4: San Antonio FC (2 media) -->
+      <a href="/collections/409545" class="collection-card"
+         style="background-image: url('https://scoreplay-mam-media-transformed.s3.amazonaws.com/986/1852092/media_52442653_52027654_compressed.jpg?x=8613b1ea462fa8');">
+        <div class="card-actions">
+          <button class="card-action-btn" title="Share" onclick="event.preventDefault()">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5"/></svg>
+          </button>
+          <button class="card-action-btn" title="Edit" onclick="event.preventDefault()">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m14.06 9.02.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"/></svg>
+          </button>
+        </div>
+        <div class="card-top-row">
+          <span class="card-media-count">2</span>
+        </div>
+        <div class="card-bottom">
+          <div class="card-date">11/05/2025</div>
+          <h6 class="card-title">San Antonio FC vs Oakland Roots SC (conference)</h6>
+          <p class="card-subtitle">Oakland Roots SC (OAK)</p>
+        </div>
+      </a>
+
+    </div><!-- /collections-scroll -->
+
+  </main>
+</div>
+
+<script>
+  // Section expand/collapse
+  document.querySelectorAll('.sidebar-section-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('open');
+    });
+  });
+
+  // Highlight active nav
+  const path = window.location.pathname;
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === path) link.classList.add('active');
+  });
+</script>
+</body>
+</html>
