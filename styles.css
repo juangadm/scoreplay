@@ -46,6 +46,8 @@ img {
   --bg-tertiary: rgb(24, 32, 47);
   --surface: rgb(30, 32, 43);
   --surface-hover: rgba(255, 255, 255, 0.08);
+  --nav-item-hover: rgba(229, 231, 239, 0.12);
+  --nav-section-hover: rgba(255, 255, 255, 0.04);
   --border: rgb(54, 56, 68);
   --border-light: rgb(70, 72, 77);
   --accent-pink: rgb(243, 127, 185);
@@ -89,7 +91,7 @@ p {
   margin-left: var(--sidebar-width);
   padding: 24px;
   min-height: 100vh;
-  background-color: var(--bg-primary);
+  background-color: var(--bg-secondary);
 }
 
 /* =====================================================
@@ -199,7 +201,7 @@ p {
 }
 
 .nav-link:hover {
-  background-color: var(--surface-hover);
+  background-color: var(--nav-item-hover);
   color: var(--text-primary);
 }
 
@@ -229,7 +231,7 @@ p {
 }
 
 .sidebar-section-btn:hover {
-  background-color: var(--surface-hover);
+  background-color: var(--nav-section-hover);
   color: var(--text-primary);
 }
 
