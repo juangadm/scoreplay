@@ -360,6 +360,31 @@ td {
 tr:last-child td { border-bottom: none; }
 tbody tr:hover { background: rgba(0, 0, 0, 0.02); }
 
+/* --- Note callout (agentation style) --- */
+.note {
+  font-size: 0.8125rem;
+  color: rgba(0, 0, 0, 0.55);
+  margin-top: 1rem;
+  font-weight: 450;
+  line-height: 1.45rem;
+  letter-spacing: -0.005rem;
+}
+
+.note-label {
+  display: inline;
+  font-weight: 700;
+  margin: -0.04em -0.06em;
+  padding: 0.04em 0.06em;
+  border-radius: 0.2em 0.15em;
+  background-image: linear-gradient(
+    75deg,
+    rgba(250, 204, 21, 0.5),
+    rgba(250, 204, 21, 0.15) 4%,
+    rgba(250, 204, 21, 0.3) 96%,
+    rgba(250, 204, 21, 0.6)
+  );
+}
+
 /* --- Blockquotes --- */
 blockquote {
   border-left: 2px solid #e0e0e0;
@@ -370,6 +395,7 @@ blockquote {
 }
 
 blockquote p { margin-bottom: 0; }
+
 
 /* --- Lists --- */
 ul, ol {
