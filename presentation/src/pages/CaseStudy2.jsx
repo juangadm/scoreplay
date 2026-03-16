@@ -3,28 +3,8 @@ import Sidebar from '../components/Sidebar'
 import Section from '../components/Section'
 import Appendix from '../components/Appendix'
 import MermaidDiagram from '../components/MermaidDiagram'
+import PhaseTabs from '../components/PhaseTabs'
 import { sections, appendices } from '../content/cs2-sections'
-
-const PHASE_DIAGRAM = `flowchart LR
-  P1["Phase 1\\nNL Search"] --> P2["Phase 2\\nUniversal Ontology"]
-  P2 --> P3["Phase 3\\nCross-org Marketplace"]
-  P3 --> P4["Phase 4\\nAPI Platform"]`
-
-const GANTT_DIAGRAM = `gantt
-  title 90-Day Implementation
-  dateFormat X
-  axisFormat Week %s
-  section Phase 1
-    CLIP + ES kNN           :a1, 0, 2w
-    Search UI + Alpha       :a2, after a1, 1w
-  section Phase 2
-    Enrichment pipeline     :b1, after a2, 3w
-    Turbopuffer migration   :b2, after b1, 2w
-    Beta launch             :milestone, m1, after b2, 0
-  section Phase 3
-    Cross-org permissions   :c1, after b2, 2w
-    GA readiness            :c2, after c1, 1w
-    GA launch               :milestone, m2, after c2, 0`
 
 const INGEST_DIAGRAM = `flowchart TD
   Upload["Upload"] --> Fork{"Asset Type?"}
@@ -45,15 +25,9 @@ const QUERY_DIAGRAM = `flowchart LR
   ANN --> Rerank["Metadata\\nRe-rank ~30ms"]
   Rerank --> Results["Top-k Results\\n< 35ms total"]`
 
-// Map section IDs that should have mermaid diagrams injected
-const DIAGRAM_MAP = {
-  'what-this-unlocks': PHASE_DIAGRAM,
-  'engineering-timeline': GANTT_DIAGRAM,
-}
-
-// Appendix C gets both ingest + query diagrams
+// Technical Architecture appendix gets both ingest + query diagrams
 const APPENDIX_DIAGRAMS = {
-  'appendix-c': [
+  'appendix-b': [
     { label: 'Ingest Pipeline', chart: INGEST_DIAGRAM },
     { label: 'Query Flow', chart: QUERY_DIAGRAM },
   ],
@@ -87,15 +61,12 @@ export default function CaseStudy2() {
         <div className="content-wrapper">
           <div className="hero">
             <h1>Semantic Search</h1>
-            <div className="subtitle">ScorePlay: Product Proposal</div>
           </div>
 
           {sections.map(s => (
             <div key={s.id}>
               <Section id={s.id} label={s.label} markdown={s.markdown} />
-              {DIAGRAM_MAP[s.id] && (
-                <MermaidDiagram chart={DIAGRAM_MAP[s.id]} />
-              )}
+              {s.id === 'engineering-timeline' && <PhaseTabs />}
             </div>
           ))}
 

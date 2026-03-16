@@ -25,66 +25,78 @@ The Advanced Search modal offers only boolean tag logic (must match / must not m
 
 ### Why This Is Existential
 
-If ScorePlay remains a taxonomy-dependent search tool, it is a storage and distribution product. Storage gets commoditized. Infrastructure doesn't. ScorePlay cannot stay a vertical SaaS tool that competes on features (features get replicated). It needs to become a content intelligence layer that compounds with every asset ingested and becomes harder to displace over time.
-
-Semantic search is the first step. It solves the immediate UX problem and lays the foundation for everything that follows.`
+- If ScorePlay remains taxonomy-dependent, it is a storage and distribution product. Storage gets commoditized.
+- ScorePlay cannot compete on features alone (features get replicated). It needs to become a content intelligence layer that compounds with every asset ingested.
+- Semantic search is the first step: solves the immediate UX problem and lays the foundation for everything that follows.`
   },
   {
     id: 'north-star-metric',
     label: 'North Star Metric',
-    markdown: `**Time to asset:** seconds from search query to asset click. Baseline on structured search with pilot clients, compare against semantic search. Target: 60% reduction at 90 days post-GA, 75% on match days. If a social media manager finds the right clip in 15 seconds instead of 3 minutes, they use ScorePlay more, publish faster, and never switch. That's retention.`
+    markdown: `**Time to asset:** seconds from search query to asset click.
+
+- **Target:** 60% reduction at 90 days post-GA, 75% on match days
+- **Why it matters:** If a social media manager finds the right clip in 15 seconds instead of 3 minutes, they use ScorePlay more, publish faster, and never switch`
   },
   {
     id: 'go-to-market',
     label: 'Go-to-Market',
-    markdown: `Oakland Roots (alpha, Week 3) → Liverpool FC (beta, Week 9) → MLS league-wide (GA, Week 13). Start with a single hungry team for fast daily feedback, expand to Liverpool where internal champions already exist and the ROI case is pre-validated, then scale to 30 clubs in one deployment. Tier-gated pricing: semantic search in Professional and Enterprise only, structured filters in Creator.`
+    markdown: `1. **Oakland Roots** (alpha, Week 3) — Single hungry team for fast daily feedback
+2. **Liverpool FC** (beta, Week 9) — Internal champions already exist, ROI case is pre-validated
+3. **MLS league-wide** (GA, Week 13) — 30 clubs in one deployment
+
+Tier-gated pricing: semantic search in Professional and Enterprise only, structured filters in Creator.`
   },
   {
     id: 'the-solution',
     label: 'The Solution',
     markdown: `**Layer 1: Semantic Search** *(what users see)*
-Natural language queries mapped to visual content via a joint image-text embedding model. Users describe what they want; the system finds assets by visual and contextual similarity. Coexists with existing structured filters; the filter bar remains for users who prefer it. The search bar interface stays familiar. The intelligence behind it changes.
+Natural language queries mapped to visual content via a joint image-text embedding model. Users describe what they want, the system finds assets by visual and contextual similarity. Coexists with existing structured filters. The search bar stays familiar; the intelligence behind it changes.
 
 **Layer 2: Universal Ontology** *(what nobody sees)*
-A standard 7-dimension content description applied to every asset at ingest, silently, on top of whatever client tags exist. The dimensions (subject, action, setting, temporal context, emotional register, visual properties, rights) are media-universal: they describe a sports photo, a fashion editorial, a news wire image, and a Netflix still equally well. Sports is where it launches; the ontology is designed to work across any media vertical. ScorePlay owns and defines this layer. Objective context (goal, match minute, score state in sports; scene, episode, talent in entertainment) is joined from structured data feeds, not inferred by AI. Subjective visual content (emotional register, composition, crowd atmosphere) is extracted by vision model. The client's taxonomy is untouched. The enrichment layer runs underneath.
+A standard 7-dimension content description applied to every asset at ingest, silently, on top of whatever client tags exist. The dimensions are media-universal: they describe a sports photo, a fashion editorial, and a Netflix still equally well. Sports is where it launches; the ontology works across any media vertical.
 
-This is the moat. Any competitor can add a vector search bar. No competitor can replicate a corpus of 150M+ assets enriched with a consistent intelligence layer without years of ingestion and the client relationships to get there.`
+- Objective context (goals, match minutes, score state) is joined from structured data feeds, not inferred by AI
+- Subjective visual content (emotional register, composition, crowd atmosphere) is extracted by vision model
+- The client's taxonomy is untouched. The enrichment layer runs underneath
+
+**This is the moat.** Any competitor can add a vector search bar. No competitor can replicate 150M+ assets enriched with a consistent intelligence layer without years of ingestion and the client relationships to get there.`
   },
   {
     id: 'what-this-unlocks',
     label: 'What This Unlocks',
-    markdown: `\`\`\`
-Phase 1 → Natural language search within client library
-Phase 2 → Universal ontology: ScorePlay owns the content intelligence layer.
-          Proprietary data asset that compounds with every upload.
-Phase 3 → Cross-org permissioned search: sponsors, media companies, leagues
-          search across multiple org libraries, in plain language, with rights scoping.
-          (Example: Nike searches NFL assets filtered to what Nike has licensed.)
-Phase 4 → Open API / plugin platform: third parties build tools on top of the
-          enrichment layer. The Vercel marketplace model for media.
-          ScorePlay is infrastructure, not just a product.
-\`\`\`
-
-The Series B narrative: **ScorePlay is building the content intelligence infrastructure for media**, the layer between raw assets and any application that needs to understand them. It starts with sports because that's where the client base, the data feeds, and the urgency are. But the ontology is domain-agnostic by design. It becomes the standard through which visual media (sports, entertainment, news, fashion) is described, discovered, licensed, and built upon.`
+    markdown: `1. **Natural language search** within client library
+2. **Universal ontology:** ScorePlay owns the content intelligence layer. Proprietary data asset that compounds with every upload.
+3. **Cross-org permissioned search:** sponsors, media companies, and leagues search across multiple org libraries, in plain language, with rights scoping. (Example: Nike searches NFL assets filtered to what Nike has licensed.)
+4. **Open API / plugin platform:** third parties build on the enrichment layer. The Vercel marketplace model for media. ScorePlay is infrastructure, not just a product.`
   },
   {
     id: 'technical-direction',
     label: 'Technical Direction',
     markdown: `### Phase 1: What Powers Semantic Search
 
-Phase 1 uses CLIP visual embeddings stored in Elasticsearch as dense kNN vectors. No new infrastructure. ES is already in the stack (confirmed in case brief) and supports kNN vector search in v8.x. A text query ("celebration") is encoded using the same CLIP model that encoded the images, so text and image live in the same vector space. Similarity search returns visually and contextually matching assets without requiring any tag match.
+CLIP visual embeddings stored in Elasticsearch as dense kNN vectors. No new infrastructure: ES is already in the stack and supports kNN vector search in v8.x.
 
-**Embedding model:** Jina CLIP v2 (open source). Chosen over standard OpenAI CLIP because it supports 89 languages (French, Spanish, Portuguese, German, Arabic) all represented in ScorePlay's current client base. ([source](https://jina.ai/models/jina-clip-v2/)) Standard CLIP is English-only and insufficient for this client mix. Jina CLIP uses the same joint image-text embedding architecture, is self-hostable on ECS (already in stack), and has no per-query API cost.
+- A text query ("celebration") is encoded using the same CLIP model that encoded the images
+- Text and image live in the same vector space, so similarity search returns matches without requiring any tag match
 
-**What gets embedded:** For photos, the image itself is encoded by Jina CLIP (visual embedding). For video, sampled frames are encoded. No text concatenation into the embedding input. Instead, existing structured metadata (tags, player names, event context, description) is stored alongside each vector as filterable metadata. This keeps the visual embedding space clean and avoids polluting CLIP's joint space with noisy text. Hybrid queries ("Wolfgang Prentice celebrating") work by combining a metadata pre-filter (player = Prentice) with a semantic vector search (celebrating). Assets mid-processing (partially tagged, no enrichment yet) are still searchable the moment CLIP embedding completes; enrichment metadata fills in asynchronously.
+**Embedding model:** Jina CLIP v2 (open source)
+- Supports 89 languages (French, Spanish, Portuguese, German, Arabic), all represented in ScorePlay's client base
+- Standard OpenAI CLIP is English-only, insufficient for this client mix
+- Self-hostable on ECS (already in stack), no per-query API cost
 
-**Re-indexing on tag updates:** When a client updates tags on an existing asset, the existing Debezium/Kafka CDC pipeline (already in stack) captures the mutation and updates the vector's metadata in the index. No re-embedding needed, because tags are metadata, not part of the vector. Ontology re-enrichment (Phase 2) only triggers on model upgrades, not on tag changes.
+**What gets embedded:**
+- Photos: the image itself is encoded (visual embedding)
+- Video: sampled frames are encoded (1 frame per 2 seconds)
+- Structured metadata (tags, player names, event context) stored alongside vectors as filterable metadata, not concatenated into the embedding
+- Hybrid queries ("Wolfgang Prentice celebrating") combine a metadata pre-filter (player = Prentice) with semantic vector search
 
-**Phase 1 vector store:** Existing Elasticsearch kNN. Zero new infrastructure to stand up. Sufficient for per-org pre-filtered search at current library sizes.
+**Re-indexing on tag updates:** Existing Debezium/Kafka CDC pipeline captures tag mutations and updates vector metadata. No re-embedding needed, tags are metadata, not part of the vector.
+
+**Phase 1 vector store:** Existing Elasticsearch kNN. Zero new infrastructure. Sufficient for per-org search at current library sizes.
 
 ### Phase 2+: Dedicated Vector Database
 
-At 150M+ assets and with cross-org search requirements, ES kNN is not the right long-term choice. Evaluated options:
+At 150M+ assets with cross-org search requirements, ES kNN is not the right long-term choice.
 
 | Option | Cost/1M vectors/mo | Strengths | Weaknesses |
 |---|---|---|---|
@@ -126,27 +138,7 @@ At 150M+ assets and with cross-org search requirements, ES kNN is not the right 
   {
     id: 'engineering-timeline',
     label: 'Engineering Timeline',
-    markdown: `\`\`\`
-PHASE 1: SEMANTIC SEARCH (Weeks 1–3)
-Weeks 1–2:   Jina CLIP deployed on ECS. Embedding pipeline for new uploads.
-             ES kNN index populated for pilot client libraries.
-Week 3:      Semantic search UI. NL query bar integrated alongside
-             existing filter bar. Internal alpha live.
-
-PHASE 2: ENRICHMENT + SCALE (Weeks 4–9)
-Weeks 4–6:   Gemini Flash enrichment pipeline at ingest.
-             Opta/SportRadar data join (objective sports context).
-             Ontology dimensions 1–6 writing to metadata.
-Weeks 7–8:   Turbopuffer migration. Hot/cold index split.
-             Priority queue for live events. <30s target validated.
-Week 9:      Beta launch with 3 pilot clients.
-
-PHASE 3: HARDEN + GA (Weeks 10–13)
-Weeks 10–11: Cross-org permissioning layer. Rights metadata.
-             Pilot sponsor/partner search session.
-Week 12:     GA readiness. Monitoring, alerting, SLA.
-Week 13:     GA launch.
-\`\`\`
+    markdown: `90-day implementation in three phases. Click the tabs below.
 
 **Staffing:**
 - 1 ML engineer (embeddings, enrichment pipeline, model ops)
@@ -164,55 +156,14 @@ Semantic search included in Professional and Enterprise plans only. Creator (ent
 
 For Phase 3 cross-org search: proposed consumption-based model (per external query or per licensed asset download). This is a hypothesis. The commercial structure depends on how rights agreements are structured with clients and requires validation. It does not exist today.
 
-**Series B framing:** Semantic search makes ScorePlay's value defensible on two axes: user stickiness (the tool is now irreplaceable for daily workflows) and data moat (the enrichment layer is proprietary and compounds with scale).`
+**Series B framing:** ScorePlay becomes the intelligence layer between raw media and every application that needs to understand it, a position that compounds with every asset ingested and cannot be replicated without the client relationships and the data.`
   },
 ]
 
 export const appendices = [
   {
     id: 'appendix-a',
-    label: 'A: Current State Audit',
-    markdown: `### What Search Looks Like Today
-
-**Global search bar** (Media Library):
-- Placeholder: "Search by keyword, tag, player, team, season etc."
-- On empty open: autocomplete dropdown with pre-indexed values grouped by Tags, Teams, Metadata, Credits, Format, Free tags, Seasons
-- On text input ("celebration"): zero tag matches → falls back to literal text options only: File name contains / Description contains / Video transcript contains
-- No semantic understanding. No fuzzy matching. No relevance ranking.
-
-**Filter bar:**
-\`Date\` | \`Players\` | \`# of players\` | \`Sponsors\` | \`Season\` | \`Team\` | \`Format\`
-(Sport, Category, Credits: disabled in demo org)
-
-Players filter surfaces face-recognition-identified athletes with asset counts (Ne Hackshaw 7, Kendall McIntosh 7, Wolfgang Prentice 6, Jose Sinesterra 2).
-
-**Advanced Search modal:**
-- View as: permission scoping dropdown
-- Must match: Tags (multiselect)
-- Must not match: Tags (multiselect)
-- Save: toggle
-- Purely boolean tag logic. No free text. No relevance ranking.
-
-### Tag Origin Model
-
-| Tag type | Origin | Notes |
-|---|---|---|
-| \`home\`, \`match\`, \`usl\`, \`toyota field\`, \`2025\` | Manually created in taxonomy by org admin | 100% client-defined, client-scoped |
-| \`Wolfgang Prentice\`, \`Ne Hackshaw\` | AWS Rekognition face recognition | Applied per-asset at ingest |
-| \`Anthem\`, \`Oakland Roots SC\` (logo) | Google Vision / Gemini logo detection | Applied per-asset at ingest |
-| \`goal\`, \`yellow card\` (live clips only) | Opta / SportRadar / Transfermarkt match data feed | Via Video Logs API (\`ActionClip\` endpoint) |
-
-### API Findings: No Hidden Enrichment Layer
-
-Full Media object schema (~20 fields) reviewed. Zero fields named \`category\`, \`scene\`, \`content_type\`, \`ai_tags\`, \`enrichment\`, or \`auto_tags\`. All TagOptions have a \`company_id\`, so every tag is 100% client-scoped. No system-level universal tags anywhere in the schema.
-
-**One existing enrichment hook found:** Upload endpoint has \`skip_team_tags\` parameter: *"Whether to skip automatic team tag assignment."* ScorePlay already injects team tags at ingest from event hierarchy context. The enrichment pipeline pattern exists. It runs one rule today. The universal ontology layer extends this pattern.
-
-**Transcription:** \`transcript_query\` field exists on event search but transcript data is not returned via API. Opaque background pipeline, surfaces only as a keyword search filter.`
-  },
-  {
-    id: 'appendix-b',
-    label: 'B: Universal Ontology',
+    label: 'A: Universal Ontology',
     markdown: `### Design Principles
 
 1. **Strict universality test**: a dimension only qualifies if it applies equally to a sports photo, a fashion editorial, a news wire image, and a Netflix still.
@@ -285,8 +236,8 @@ Rationale: the retrieval goal is "find the right clip," not "find the right fram
 **Phase 2 (enrich):** Add Gemini Flash ontology extraction. Structured dimensions written as metadata alongside embeddings. Enables faceted semantic search, analytics, and the cross-org marketplace layer.`
   },
   {
-    id: 'appendix-c',
-    label: 'C: Technical Architecture',
+    id: 'appendix-b',
+    label: 'B: Technical Architecture',
     markdown: `### Full Stack
 
 \`\`\`
@@ -376,6 +327,47 @@ When the embedding model is upgraded (inevitable), old and new vectors cannot co
 - Run new model in parallel index during transition period
 - Serve from both indexes, deprecate old progressively
 - Plan for full re-index at model upgrade: the true corpus is ~2.79B vectors. At 25 imgs/sec sustained throughput on g4dn.xlarge: 2.79B / 25 / 3,600 = **~31,000 GPU-hours × \$0.526 = ~\$16,000–21,000** ([source](https://instances.vantage.sh), [benchmarks](https://clip-as-service.jina.ai/user-guides/benchmark/)). Schedulable in off-peak batches, not an ongoing cost.`
+  },
+  {
+    id: 'appendix-c',
+    label: 'C: Current State Audit',
+    markdown: `### What Search Looks Like Today
+
+**Global search bar** (Media Library):
+- Placeholder: "Search by keyword, tag, player, team, season etc."
+- On empty open: autocomplete dropdown with pre-indexed values grouped by Tags, Teams, Metadata, Credits, Format, Free tags, Seasons
+- On text input ("celebration"): zero tag matches → falls back to literal text options only: File name contains / Description contains / Video transcript contains
+- No semantic understanding. No fuzzy matching. No relevance ranking.
+
+**Filter bar:**
+\`Date\` | \`Players\` | \`# of players\` | \`Sponsors\` | \`Season\` | \`Team\` | \`Format\`
+(Sport, Category, Credits: disabled in demo org)
+
+Players filter surfaces face-recognition-identified athletes with asset counts (Ne Hackshaw 7, Kendall McIntosh 7, Wolfgang Prentice 6, Jose Sinesterra 2).
+
+**Advanced Search modal:**
+- View as: permission scoping dropdown
+- Must match: Tags (multiselect)
+- Must not match: Tags (multiselect)
+- Save: toggle
+- Purely boolean tag logic. No free text. No relevance ranking.
+
+### Tag Origin Model
+
+| Tag type | Origin | Notes |
+|---|---|---|
+| \`home\`, \`match\`, \`usl\`, \`toyota field\`, \`2025\` | Manually created in taxonomy by org admin | 100% client-defined, client-scoped |
+| \`Wolfgang Prentice\`, \`Ne Hackshaw\` | AWS Rekognition face recognition | Applied per-asset at ingest |
+| \`Anthem\`, \`Oakland Roots SC\` (logo) | Google Vision / Gemini logo detection | Applied per-asset at ingest |
+| \`goal\`, \`yellow card\` (live clips only) | Opta / SportRadar / Transfermarkt match data feed | Via Video Logs API (\`ActionClip\` endpoint) |
+
+### API Findings: No Hidden Enrichment Layer
+
+Full Media object schema (~20 fields) reviewed. Zero fields named \`category\`, \`scene\`, \`content_type\`, \`ai_tags\`, \`enrichment\`, or \`auto_tags\`. All TagOptions have a \`company_id\`, so every tag is 100% client-scoped. No system-level universal tags anywhere in the schema.
+
+**One existing enrichment hook found:** Upload endpoint has \`skip_team_tags\` parameter: *"Whether to skip automatic team tag assignment."* ScorePlay already injects team tags at ingest from event hierarchy context. The enrichment pipeline pattern exists. It runs one rule today. The universal ontology layer extends this pattern.
+
+**Transcription:** \`transcript_query\` field exists on event search but transcript data is not returned via API. Opaque background pipeline, surfaces only as a keyword search filter.`
   },
   {
     id: 'appendix-d',
@@ -559,7 +551,7 @@ At 300M assets (~5.6B vectors at 1 frame/2s): Turbopuffer ~\$5,600/month storage
 For Phase 3 cross-org / marketplace search: **consumption-based model is a hypothesis** (per external query or per licensed asset download). The commercial structure depends on how rights agreements are structured with clients. Requires validation before committing. Net-new revenue stream that does not exist today.
 
 **Series B framing:**
-> "We are the first sports media platform to offer natural language search across a multi-sport, multi-geography asset network, and the first with a universal content intelligence layer that makes a permissioned cross-org marketplace possible. Our three launch pilots (MLS, 30 clubs; FIBA, 212 national federations; Liverpool FC, 10TB/match) represent the full spectrum of the market. The enrichment layer compounds with every asset ingested. It cannot be replicated without the client relationships and the data."
+> "ScorePlay becomes the intelligence layer between raw media and every application that needs to understand it, a position that compounds with every asset ingested and cannot be replicated without the client relationships and the data."
 
 ---
 
