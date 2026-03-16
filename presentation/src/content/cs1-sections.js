@@ -33,7 +33,7 @@ export const sections = [
 - LLM-assisted spec drafting: PMs use Claude/GPT for first-draft specs from customer interviews, then review and sign off
 
 **For CS (the high-leverage unlock):**
-60%+ of engineer capacity goes to client fires. A meaningful fraction are configuration-layer issues (copy changes, threshold tweaks, permission resets, taxonomy updates) that don't require a Go engineer.
+60%+ of engineer capacity goes to client fires. My hypothesis is that a meaningful fraction are configuration-layer issues (copy changes, threshold tweaks, permission resets, taxonomy updates) that don't require a Go engineer.
 
 Proposed access model:
 - READ access to the full repo for senior CS
@@ -196,7 +196,9 @@ Hire an Intelligence/Marketplace PM when search is in beta and governance is cle
   {
     id: '90-day-success',
     label: '90-Day Success',
-    markdown: `- One roadmap, no competing docs
+    markdown: `- Semantic search is completed and validated, in GA or near GA
+- PMs are pushing code to production. Designers are too.
+- One roadmap, no competing docs
 - Interrupt rotation running; engineers protected from ad-hoc interruptions
 - Completion rate above 70% for two consecutive cycles
 - Stats squad has written disbanding conditions
