@@ -194,6 +194,15 @@ hr { border-top: 1px solid var(--border); margin: 1.5rem 0; }
   margin-bottom: 0.125rem;
 }
 
+.sidebar-logo-wordmark path {
+  transition: fill 4s ease;
+}
+
+.sidebar-logo-wordmark path:hover {
+  fill: var(--accent);
+  transition: fill 0.1s ease;
+}
+
 .sidebar-title {
   font-size: 0.6875rem;
   font-weight: 450;
@@ -252,6 +261,7 @@ hr { border-top: 1px solid var(--border); margin: 1.5rem 0; }
 [data-toc-list]::after {
   content: "";
   position: absolute;
+  top: 0;
   inset-inline-start: 0;
   width: 1.5px;
   border-radius: 9999px;
@@ -505,7 +515,7 @@ ul + p, ol + p { margin-top: 0.625rem; }
 }
 
 .landing-wordmark path {
-  transition: fill 1.2s ease;
+  transition: fill 4s ease;
 }
 
 .landing-wordmark path:hover {
@@ -547,7 +557,7 @@ ul + p, ol + p { margin-top: 0.625rem; }
 }
 
 .landing-row:hover {
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(243, 127, 185, 0.08);
 }
 
 .landing-row-title {
