@@ -1,0 +1,4 @@
+.playwright-mcp/
+presentation/node_modules/
+presentation/dist/
+presentation/.vercel/
