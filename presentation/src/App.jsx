@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import CaseStudy1 from './pages/CaseStudy1'
 import CaseStudy2 from './pages/CaseStudy2'
 import Landing from './pages/Landing'
 
@@ -9,16 +10,15 @@ function App() {
     const path = window.location.pathname
     if (path === '/' || path === '/index.html') {
       setPage('landing')
-    } else if (path.includes('case-study-1')) {
+    } else if (path.includes('org')) {
       setPage('cs1')
     } else {
       setPage('cs2')
     }
   }, [])
 
-  // For simplicity, always show CS2 since that's the primary deliverable
-  // Landing page can be accessed at root
   if (page === 'landing') return <Landing />
+  if (page === 'cs1') return <CaseStudy1 />
 
   return <CaseStudy2 />
 }

@@ -41,7 +41,7 @@ function TocList({ items, activeId, onItemClick, listRef }) {
   )
 }
 
-export default function Sidebar({ sections, appendices, onAppendixClick }) {
+export default function Sidebar({ sections, appendices, onAppendixClick, title = 'Semantic Search', footerLink = { href: '/org', label: 'Team Organization →' } }) {
   const [activeId, setActiveId] = useState('')
   const summaryListRef = useRef(null)
   const appendixListRef = useRef(null)
@@ -144,7 +144,7 @@ export default function Sidebar({ sections, appendices, onAppendixClick }) {
           <path d="M179.186 23.457V35.44H173.586L173.186 31.8553C171.686 34.467 168.986 36.0033 165.586 36.0033C159.436 36.0033 154.336 30.9848 154.336 23.4057C154.336 16.2364 159.636 10.8594 166.786 10.8594C173.936 10.8594 179.186 15.6731 179.186 23.457ZM172.936 23.4057C172.936 19.2066 170.236 16.4924 166.786 16.4924C163.336 16.4924 160.586 19.309 160.586 23.4057C160.586 27.5025 163.236 30.3191 166.786 30.3191C169.836 30.3191 172.936 28.117 172.936 23.4057Z" fill="currentColor"/>
           <path d="M195.991 11.3672H202.891L190.041 45.5753H182.991L187.291 35.4869L178.141 11.3672H185.191L189.641 25.1426C190.091 26.474 190.341 27.7031 190.541 29.1882H190.641C190.841 27.7031 191.141 26.474 191.541 25.1426L195.991 11.3672Z" fill="currentColor"/>
         </svg>
-        <div className="sidebar-title">Semantic Search</div>
+        <div className="sidebar-title">{title}</div>
       </div>
 
       <div className="nav-item-wrapper">
@@ -172,7 +172,7 @@ export default function Sidebar({ sections, appendices, onAppendixClick }) {
       </div>
 
       <div className="sidebar-footer">
-        <a href="/case-study-1">Case Study 1 →</a>
+        <a href={footerLink.href}>{footerLink.label}</a>
       </div>
     </nav>
   )
