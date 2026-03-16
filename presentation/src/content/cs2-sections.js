@@ -72,17 +72,22 @@ A standard 7-dimension content description applied to every asset at ingest, sil
   {
     id: 'technical-direction',
     label: 'Technical Direction',
-    markdown: `### Phase 1: What Powers Semantic Search
+    markdown: `> This direction is based on publicly available information about ScorePlay's stack. The actual architecture may differ.
+
+### Phase 1: What Powers Semantic Search
 
 CLIP visual embeddings stored in Elasticsearch as dense kNN vectors. No new infrastructure: ES is already in the stack and supports kNN vector search in v8.x.
 
 - A text query ("celebration") is encoded using the same CLIP model that encoded the images
 - Text and image live in the same vector space, so similarity search returns matches without requiring any tag match
 
-**Embedding model:** Jina CLIP v2 (open source)
+**Embedding model:** Jina CLIP v2
 - Supports 89 languages (French, Spanish, Portuguese, German, Arabic), all represented in ScorePlay's client base
 - Standard OpenAI CLIP is English-only, insufficient for this client mix
-- Self-hostable on ECS (already in stack), no per-query API cost
+
+
+> **License note:** CC BY-NC 4.0 weights (non-commercial). Phase 1 pilot (~10M vectors): use the hosted API — commercially licensed, no negotiation, ~$800 backfill. Phase 2+ (2.79B vectors): negotiate a self-hosting enterprise license with Jina. At that scale the API costs ~$223K vs ~$5–16K self-hosted, so the conversation is worth having.
+- **Why not jina-embeddings-v4?** v4 is technically stronger (cross-modal alignment score of 0.71 vs ~0.15 for CLIP-class models) and supports the same image+text shared vector space. But it is built on the Qwen Research License, which prohibits commercial use with no hosted API path and no commercial self-hosting route. If v4 is eventually re-licensed, it warrants a re-evaluation given the performance gap.
 
 **What gets embedded:**
 - Photos: the image itself is encoded (visual embedding)
@@ -436,7 +441,7 @@ MONTHLY, MONTH 10  (40M new assets/mo, library at ~5.1B vectors)
 | Search result payload | ~2 MB/query | 20 results × 100KB thumbnail each |
 | Gemini Flash pricing | \$0.30/1M input tokens; ~258–500 tokens/image | ([source](https://ai.google.dev/gemini-api/docs/pricing)) |
 | Effective Gemini cost/asset | ~\$0.00008–0.00015 | 258 tokens (small image) to 500 tokens (large) × \$0.30/1M |
-| GPU instance (embedding) | g4dn.xlarge: \$0.526/hr | ([source](https://instances.vantage.sh)) |
+| GPU instance (embedding) | g4dn.xlarge: \$0.526/hr on-demand; ~\$0.16/hr Spot | ([source](https://instances.vantage.sh)) |
 | GPU throughput (Jina CLIP, batch) | ~25 imgs/sec sustained | ([benchmarks](https://clip-as-service.jina.ai/user-guides/benchmark/), [T4 inference](https://replicate.com/zsxkib/jina-clip-v2); batching improves throughput ~10–15×) |
 | Turbopuffer storage | \$1.00/1M vectors/month | ([source](https://turbopuffer.com/pricing)) |
 | Turbopuffer queries | \$4.00/1M queries | ([source](https://turbopuffer.com/pricing)) |
@@ -448,7 +453,7 @@ MONTHLY, MONTH 10  (40M new assets/mo, library at ~5.1B vectors)
 | Component | Calculation | Est. cost |
 |---|---|---|
 | Frame extraction (video only) | ffmpeg on Fargate (CPU, no GPU): 60M clips × ~10 CPU-seconds each ÷ 2 vCPU = ~83,000 vCPU-hours × \$0.04048 | ~\$3,400 |
-| CLIP embeddings, 2.79B vectors | g4dn.xlarge at ~25 imgs/sec: 2.79B ÷ 25 ÷ 3,600 = ~31,000 hrs × \$0.526 | ~\$16,000–20,000 |
+| CLIP embeddings, 2.79B vectors | g4dn.xlarge at ~25 imgs/sec: 2.79B ÷ 25 ÷ 3,600 = ~31,000 hrs × \$0.526 on-demand (or ~\$0.16 Spot) | ~\$5,000–20,000 |
 | Gemini Flash enrichment, 150M assets | ~\$0.00012/asset × 150M (enrichment runs per asset, not per frame) | ~\$12,000–18,000 |
 | **Total backfill** | | **~\$31,000–41,000** |
 
@@ -473,7 +478,7 @@ MONTHLY, MONTH 10  (40M new assets/mo, library at ~5.1B vectors)
 *Phase 3 marketplace note: programmatic queries from sponsors and broadcasters can push Turbopuffer query costs from ~\$40/month to \$200–400/month (50–100M queries × \$4/M). Egress grows proportionally with query volume. Neither breaks the model, but both should be monitored as Phase 3 activates.*
 
 ### Re-indexing Cost (model upgrade scenario)
-Full re-embed of 2.79B+ accumulated vectors: **~\$16,000–21,000** compute on g4dn.xlarge ([source](https://instances.vantage.sh)). Schedulable in off-peak batches. Not an ongoing cost, periodic event every 18–24 months as models improve.
+Full re-embed of 2.79B+ accumulated vectors: **~\$5,000–21,000** compute on g4dn.xlarge ([source](https://instances.vantage.sh)) — Spot instances (~\$0.16/hr) bring this to the low end; on-demand (~\$0.526/hr) to the high end. Schedulable in off-peak batches. Not an ongoing cost, periodic event every 18–24 months as models improve.
 
 ### Cost vs. Pinecone at Scale
 At 300M assets (~5.6B vectors at 1 frame/2s): Turbopuffer ~\$5,600/month storage + ~\$40/month queries vs. Pinecone pod-based **~\$20,000–30,000/month** ([source](https://www.pinecone.io/pricing/)). The Turbopuffer advantage is real and large at storage-dominant workloads; narrows if query volume reaches hundreds of millions per month.`
