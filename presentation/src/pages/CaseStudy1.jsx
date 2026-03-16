@@ -69,8 +69,9 @@ export default function CaseStudy1() {
           ))}
 
           <footer className="footer">
-            Made by <a href="https://juangabriel.me" target="_blank" rel="noopener noreferrer">Juan Gabriel</a> for ScorePlay
+            Made by <a href="https://juangabriel.org" target="_blank" rel="noopener noreferrer">Juan Gabriel</a> for ScorePlay
           </footer>
+
         </div>
       </main>
     </div>
