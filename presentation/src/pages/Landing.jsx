@@ -19,12 +19,17 @@ export default function Landing() {
 
         <p>I spent a few hours thinking through the response to your prompt that would best serve ScorePlay in its need to execute the immediate roadmap while preparing to build a generational business.</p>
 
+        <p className="note">
+          <strong className="note-label">Note:</strong> I haven't met the team yet, so the org proposals in Case 1 are directional. They're meant to illustrate the type of talent and thinking, not to redesign a team I don't know.
+        </p>
+
         <h3 className="landing-section-label">Mission</h3>
+        <p>This is a compressed sketch of a longer path. The full vision has more steps between here and there.</p>
         <p>ScorePlay's work will be done when</p>
         <ul>
           <li>a small national broadcaster</li>
-          <li>licenses and airs a live breaking news segment</li>
-          <li>with footage surfaced, sourced, rights-verified, and approved entirely on ScorePlay</li>
+          <li>licenses, edits, and airs a live breaking news segment</li>
+          <li>footage found, edited, rights-verified, and approved on ScorePlay, using the platform and everything built on top of it</li>
           <li>no rights manager reviewed a single clip.</li>
         </ul>
 
