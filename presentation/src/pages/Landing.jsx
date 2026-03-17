@@ -17,7 +17,11 @@ export default function Landing() {
           <div className="landing-meta">Prepared by <a href="https://juangabriel.org" target="_blank" rel="noopener noreferrer">Juan Gabriel</a></div>
         </header>
 
-        <p>I spent a few hours thinking through the response to your prompt that would best serve ScorePlay in its need to execute the immediate roadmap while preparing to build a generational business.</p>
+        <p>Two key hypotheses to inform the immediate roadmap and future business foundation of ScorePlay:</p>
+        <ol>
+          <li>The imperative to build a content intelligence layer</li>
+          <li>The delivery lever of re-centring the current org model</li>
+        </ol>
 
         <p className="note">
           <strong className="note-label">Note:</strong> I haven't met the team yet, so the org proposals in Case 1 are directional. They're meant to illustrate the type of talent and thinking, not to redesign a team I don't know.
