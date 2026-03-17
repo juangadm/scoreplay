@@ -235,7 +235,6 @@ None of these are personnel problems. They're structural. The fix is org design,
 | Role | Paris (fully loaded) | NYC (fully loaded) | Savings |
 |---|---|---|---|
 | Senior PM | €107k ($127k) | $234k | 1.84x |
-| Head of Product | €149k ($176k) | $296k | 1.68x |
 | Senior SWE | €119k ($141k) | $251k | 1.78x |
 | Senior Designer | €87k ($103k) | $171k | 1.66x |
 
@@ -269,15 +268,6 @@ Payroll taxes: Social Security (6.20%, capped at $184.5k), Medicare (1.45%, unca
 | Employer charges | €32,800 (45.5%) | $15,900 (8.2%) |
 | Benefits | €2,750 | $23,300 |
 | **Total** | **€107,550 ($127k)** | **$234,200** |
-
-**Head of Product** *(Paris €100k base; NYC $250k base)*
-
-| Component | Paris | NYC |
-|---|---|---|
-| Base salary | €100,000 | $250,000 |
-| Employer charges | €45,500 (45.5%) | $17,050 (6.8%) |
-| Benefits | €3,500 | $28,700 |
-| **Total** | **€149,000 ($176k)** | **$295,750** |
 
 **Senior SWE** *(Paris €80k base; NYC $210k base)*
 
