@@ -24,14 +24,14 @@ export default function Landing() {
         </ol>
 
         <p className="note">
-          <strong className="note-label">Note:</strong> I haven't met the team yet, so the org proposals in Case 1 are directional. They're meant to illustrate the type of talent and thinking, not to redesign a team I don't know.
+          <strong className="note-label">Note:</strong> I haven't met the team yet, so the org proposals in org are directional. They're meant to illustrate the type of talent and thinking, not to redesign a team I don't know.
         </p>
 
         <h3 className="landing-section-label">Mission</h3>
         <p>This is a compressed sketch of a longer path. The full vision has more steps between here and there.</p>
         <p>ScorePlay's work will be done when</p>
         <ul>
-          <li>a small national broadcaster</li>
+          <li>a small regional Spanish broadcaster</li>
           <li>licenses, edits, and airs a live breaking news segment</li>
           <li>footage found, edited, rights-verified, and approved on ScorePlay, using the platform and everything built on top of it</li>
           <li>no rights manager reviewed a single clip.</li>
@@ -39,13 +39,13 @@ export default function Landing() {
 
         <h3 className="landing-section-label">Business Case</h3>
         <div className="landing-table">
-          <a href="/org" className="landing-row">
-            <span className="landing-row-title">Org Design</span>
-            <span className="landing-row-meta">4 min read</span>
-          </a>
           <a href="/semantic" className="landing-row">
             <span className="landing-row-title">Semantic Search</span>
             <span className="landing-row-meta">6 min read</span>
+          </a>
+          <a href="/org" className="landing-row">
+            <span className="landing-row-title">Org Design</span>
+            <span className="landing-row-meta">4 min read</span>
           </a>
         </div>
 
