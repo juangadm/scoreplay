@@ -31,7 +31,7 @@ export default function Landing() {
         <p>This is a compressed sketch of a longer path. The full vision has more steps between here and there.</p>
         <p>ScorePlay's work will be done when</p>
         <ul>
-          <li>a small regional Spanish broadcaster</li>
+          <li>a small regional Bolivian broadcaster</li>
           <li>licenses, edits, and airs a live breaking news segment</li>
           <li>footage found, edited, rights-verified, and approved on ScorePlay, using the platform and everything built on top of it</li>
           <li>no rights manager reviewed a single clip.</li>
